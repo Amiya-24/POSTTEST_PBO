@@ -29,3 +29,7 @@ Program ini menggunakan prinsip Object-Oriented Programming (OOP) yang dibagi me
 3. Lakukan kompilasi program dengan menjalankan perintah:
    ```bash
    javac SistemUtama.java
+   ```
+4. Jalankan program yang telah dikompilasi dengan perintah:
+   ```bash
+   java SistemUtama
