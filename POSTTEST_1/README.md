@@ -74,3 +74,12 @@ Program ini menggunakan prinsip Object-Oriented Programming (OOP) yang dibagi me
    ```bash
    java SistemUtama
    ```
+
+---
+
+## Pengembangan Selanjutnya
+Karena program ini masih dalam versi dasar, ada banyak ruang untuk dikembangkan ke depannya. Beberapa fitur yang bisa ditambahkan antara lain:
+1. **Fitur Login & Register:** Untuk membatasi akses pengguna selain Admin.
+2. **Fitur CRUD Admin:** Menambahkan CRUD Admin untuk mengelola data `Alat Berat`, `Operator`, `Transaksii`, dan `Akun`.
+3. **Detail CRUD Client:** Menambahkan detail pada bagian `UPDATE`.
+4. **Validasi Input:** Menambahkan `ERROR HANDLING` pada program.
