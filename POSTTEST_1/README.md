@@ -2,6 +2,15 @@
 
 Sebuah program sederhana berbasis teks (CLI) yang dibuat dengan Java. Program ini berfungsi untuk mencatat transaksi penyewaan alat berat sekaligus menghitung otomatis total biaya yang harus dibayar (termasuk gaji operatornya).
 
+## 📑 Daftar Isi
+- [Apa Saja yang Bisa Dilakukan Program Ini? (Fitur Utama)](#apa-saja-yang-bisa-dilakukan-program-ini-fitur-utama)
+- [Gimana Cara Kerjanya? (Alur Program)](#gimana-cara-kerjanya-alur-program)
+- [Data Bawaan (Bisa Langsung Dipakai)](#data-bawaan-bisa-langsung-dipakai)
+- [Struktur Kode (Penjelasan Singkat Class)](#struktur-kode-penjelasan-singkat-class)
+- [Cara Menjalankan Program di Komputer Kamu](#cara-menjalankan-program-di-komputer-kamu)
+
+---
+
 ## Apa Saja yang Bisa Dilakukan Program Ini? (Fitur Utama)
 Program ini mempunyai fitur CRUD dasar (Create, Read, Update, Delete) yang dikemas dalam bentuk menu interaktif:
 1. **Lihat Transaksi:** Menampilkan semua data sewaan yang sudah dicatat, lengkap dengan rincian alat berat, operator, lama sewa, dan total harganya.
