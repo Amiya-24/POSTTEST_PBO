@@ -1,4 +1,4 @@
-# Sistem Manajemen Penyewaan Alat Berat & Kalkulasi Biaya Operator 🚜
+# Sistem Manajemen Penyewaan Alat Berat & Kalkulasi Biaya Operator
 
 Sebuah program sederhana berbasis teks (CLI) yang dibuat dengan Java. Program ini berfungsi untuk mencatat transaksi penyewaan alat berat sekaligus menghitung otomatis total biaya yang harus dibayar (termasuk gaji operatornya).
 
