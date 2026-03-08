@@ -18,6 +18,8 @@ Program ini mempunyai fitur CRUD dasar (Create, Read, Update, Delete) yang dikem
 3. **Ubah Lama Sewa:** Salah masukin hari? Tenang, kamu bisa ubah durasi sewanya pakai ID Transaksi. Total harga otomatis bakal dihitung ulang!
 4. **Hapus Transaksi:** Menghapus catatan sewaan kalau pesanannya batal atau sudah selesai.
 
+---
+
 ## Gimana Cara Kerjanya? (Alur Program)
 1. **Buka Program:** Saat program pertama kali dijalankan, kamu akan melihat menu pilihan (1-5).
 
@@ -38,6 +40,8 @@ Program ini mempunyai fitur CRUD dasar (Create, Read, Update, Delete) yang dikem
 
 *Catatan: Karena ini program sederhana, datanya hanya disimpan sementara pada memori komputer menggunakan `ArrayList`. Sehingga jika program ditutup, datanya akan hilang.*
 
+---
+
 ## Data Bawaan (Bisa Langsung Dipakai)
 Biar mudah saat menguji program, terdapat beberapa data bawaan di dalamnya:
 * **Alat Berat:**
@@ -47,12 +51,16 @@ Biar mudah saat menguji program, terdapat beberapa data bawaan di dalamnya:
   1. Budi (Senior) - Rp 500.000 / hari
   2. Andi (Junior) - Rp 300.000 / hari
 
+---
+
 ## Struktur Kode (Penjelasan Singkat Class)
 Program ini menggunakan prinsip Object-Oriented Programming (OOP) yang dibagi menjadi empat class utama:
 - `AlatBerat`: Menyimpan atribut untuk alat berat seperti ID, Nama Alat, dan Harga Sewa per Hari.
 - `Operator`: Menyimpan atribut untuk operator seperti ID, Nama Operator, dan Biaya per Hari.
 - `Penyewaan`: Kelas yang menggabungkan objek `AlatBerat` dan `Operator` ke dalam satu transaksi. Kelas ini juga memiliki metode `hitungTotalBiaya()` untuk mengkalkulasi total tagihan.
 - `SistemUtama`: Class utama yang menampung daftar `ArrayList`, metode `main`, serta logika CLI interaktif.
+
+---
 
 ## Cara Menjalankan Program di Komputer Kamu
 1. Pastikan di komputermu sudah ter-install Java Development Kit (JDK).
