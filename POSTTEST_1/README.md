@@ -8,6 +8,7 @@ Sebuah program sederhana berbasis teks (CLI) yang dibuat dengan Java. Program in
 - [Data Bawaan (Bisa Langsung Dipakai)](#data-bawaan-bisa-langsung-dipakai)
 - [Struktur Kode (Penjelasan Singkat Class)](#struktur-kode-penjelasan-singkat-class)
 - [Cara Menjalankan Program di Komputer Kamu](#cara-menjalankan-program-di-komputer-kamu)
+- [Pengembangan Selanjutnya](#pengembangan-selanjutnya)
 
 ---
 
