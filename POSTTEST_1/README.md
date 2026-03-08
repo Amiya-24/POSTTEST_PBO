@@ -10,11 +10,22 @@ Program ini mempunyai fitur CRUD dasar (Create, Read, Update, Delete) yang dikem
 4. **Hapus Transaksi:** Menghapus catatan sewaan kalau pesanannya batal atau sudah selesai.
 
 ## Gimana Cara Kerjanya? (Alur Program)
-1. **Buka Program:** Saat program pertama kali dijalankan, kamu akan melihat menu pilihan (1-5).![Menu Utama](assets/[1]%20Tampilan%20Menu%20Awal.png)
-2. **Mulai Menyewa:** Pilih menu nomor 2 untuk membuat pesanan. Masukkan ID bebas (misal: T01), pilih alat dan operatornya dengan mengetikkan nomor, lalu isi berapa hari mau disewa.![Buat Transaksi](assets/[2]%20Membuat%20Transaksi%20Baru.png)
+1. **Buka Program:** Saat program pertama kali dijalankan, kamu akan melihat menu pilihan (1-5).
+
+![Menu Utama](assets/[1]%20Tampilan%20Menu%20Awal.png)
+
+2. **Mulai Menyewa:** Pilih menu nomor 2 untuk membuat pesanan. Masukkan ID bebas (misal: T01), pilih alat dan operatornya dengan mengetikkan nomor, lalu isi berapa hari mau disewa.
+
+![Buat Transaksi](assets/[2]%20Membuat%20Transaksi%20Baru.png)
+
 3. **Sistem Menghitung:** Program akan langsung menjumlahkan total harga pakai rumus: `(Harga Sewa Alat + Harga Operator) x Lama Sewa`.
-4. **Cek Data:** Pilih menu nomor 1 untuk melihat apakah data dan harganya sudah masuk dengan benar.![Lihat Transaksi](assets/[3]%20Melihat%20Transaksi.png)
-5. **Selesai:** Kalau sudah selesai, pilih menu nomor 5 untuk keluar dari program.![Program Selesai](assets/[4]%20Keluar%20dari%20Program.png)
+4. **Cek Data:** Pilih menu nomor 1 untuk melihat apakah data dan harganya sudah masuk dengan benar.
+
+![Lihat Transaksi](assets/[3]%20Melihat%20Transaksi.png)
+
+5. **Selesai:** Kalau sudah selesai, pilih menu nomor 5 untuk keluar dari program.
+
+![Program Selesai](assets/[4]%20Keluar%20dari%20Program.png)
 
 *Catatan: Karena ini program sederhana, datanya hanya disimpan sementara pada memori komputer menggunakan `ArrayList`. Sehingga jika program ditutup, datanya akan hilang.*
 
