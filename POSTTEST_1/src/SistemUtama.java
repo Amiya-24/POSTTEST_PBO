@@ -81,15 +81,15 @@ public class SistemUtama {
         boolean isRunning = true;
 
         while (isRunning) {
-            System.out.println("\n=======================================================");
-            System.out.println("  SISTEM PENYEWAAN ALAT BERAT & KALKULASI OPERATOR  ");
-            System.out.println("=======================================================");
+            System.out.println("\n==================================================================");
+            System.out.println("  SISTEM MANAJEMEN PENYEWAAN ALAT BERAT & KALKULASI BIAYA OPERATOR  ");
+            System.out.println("==================================================================");
             System.out.println("1. Tampilkan Data Transaksi Penyewaan");
             System.out.println("2. Buat Transaksi Penyewaan Baru");
             System.out.println("3. Ubah Lama Sewa Transaksi");
             System.out.println("4. Hapus Transaksi Penyewaan");
             System.out.println("5. Keluar");
-            System.out.println("=======================================================");
+            System.out.println("==================================================================");
             System.out.print("Pilih menu (1-5): ");
             
             int pilihan = scanner.nextInt();
