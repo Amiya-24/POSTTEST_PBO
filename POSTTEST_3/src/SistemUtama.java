@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class AlatBerat {
-    private String idAlat;
-    private String namaAlat;
-    private double hargaSewaPerHari;
+    protected String idAlat;
+    protected String namaAlat;
+    protected double hargaSewaPerHari;
 
     public AlatBerat(String idAlat, String namaAlat, double hargaSewaPerHari) {
         this.idAlat = idAlat;
@@ -23,6 +23,60 @@ class AlatBerat {
 
     protected void cetakInfoAlat() {
         System.out.println("Alat Berat   : " + this.namaAlat + " (Rp" + this.hargaSewaPerHari + "/hari)");
+    }
+}
+
+class Excavator extends AlatBerat {
+    private double kapasitasBucket;
+
+    public Excavator(String idAlat, String namaAlat, double hargaSewaPerHari, double kapasitasBucket) {
+        super(idAlat, namaAlat, hargaSewaPerHari);
+        this.kapasitasBucket = kapasitasBucket;
+    }
+
+    public double getKapasitasBucket() { return kapasitasBucket; }
+    public void setKapasitasBucket(double kapasitasBucket) { this.kapasitasBucket = kapasitasBucket; }
+
+    @Override
+    protected void cetakInfoAlat() {
+        super.cetakInfoAlat();
+        System.out.println("Spesifikasi  : Kapasitas Bucket " + this.kapasitasBucket + " m3");
+    }
+}
+
+class Bulldozer extends AlatBerat {
+    private String tipeBlade; 
+
+    public Bulldozer(String idAlat, String namaAlat, double hargaSewaPerHari, String tipeBlade) {
+        super(idAlat, namaAlat, hargaSewaPerHari);
+        this.tipeBlade = tipeBlade;
+    }
+
+    public String getTipeBlade() { return tipeBlade; }
+    public void setTipeBlade(String tipeBlade) { this.tipeBlade = tipeBlade; }
+
+    @Override
+    protected void cetakInfoAlat() {
+        super.cetakInfoAlat();
+        System.out.println("Spesifikasi  : Tipe Blade " + this.tipeBlade);
+    }
+}
+
+class Crane extends AlatBerat {
+    private double kapasitasAngkat;
+
+    public Crane(String idAlat, String namaAlat, double hargaSewaPerHari, double kapasitasAngkat) {
+        super(idAlat, namaAlat, hargaSewaPerHari);
+        this.kapasitasAngkat = kapasitasAngkat;
+    }
+
+    public double getKapasitasAngkat() { return kapasitasAngkat; }
+    public void setKapasitasAngkat(double kapasitasAngkat) { this.kapasitasAngkat = kapasitasAngkat; }
+
+    @Override
+    protected void cetakInfoAlat() {
+        super.cetakInfoAlat();
+        System.out.println("Spesifikasi  : Kapasitas Angkat " + this.kapasitasAngkat + " Ton");
     }
 }
 
@@ -97,8 +151,9 @@ public class SistemUtama {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        listAlat.add(new AlatBerat("A01", "Excavator", 1500000));
-        listAlat.add(new AlatBerat("A02", "Bulldozer", 2000000));
+        listAlat.add(new Excavator("A01", "Excavator CAT 320", 1500000, 1.2));
+        listAlat.add(new Bulldozer("A02", "Bulldozer Komatsu D85", 2000000, "Semi-U Blade"));
+        listAlat.add(new Crane("A03", "Mobile Crane Kato", 3500000, 25.0)); // Tambahan Crane
         
         listOperator.add(new Operator("O01", "Budi (Senior)", 500000));
         listOperator.add(new Operator("O02", "Andi (Junior)", 300000));
