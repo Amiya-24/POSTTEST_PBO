@@ -24,23 +24,34 @@ class AlatBerat {
     protected void cetakInfoAlat() {
         System.out.println("Alat Berat   : " + this.namaAlat + " (Rp" + this.hargaSewaPerHari + "/hari)");
     }
+
+    public double hitungBiayaAlat(int lamaSewa) {
+        return this.hargaSewaPerHari * lamaSewa;
+    }
 }
 
 class Excavator extends AlatBerat {
-    private double kapasitasBucket;
+    private double kapasitasBucket; 
 
     public Excavator(String idAlat, String namaAlat, double hargaSewaPerHari, double kapasitasBucket) {
         super(idAlat, namaAlat, hargaSewaPerHari);
         this.kapasitasBucket = kapasitasBucket;
     }
 
-    public double getKapasitasBucket() { return kapasitasBucket; }
-    public void setKapasitasBucket(double kapasitasBucket) { this.kapasitasBucket = kapasitasBucket; }
-
     @Override
     protected void cetakInfoAlat() {
         super.cetakInfoAlat();
         System.out.println("Spesifikasi  : Kapasitas Bucket " + this.kapasitasBucket + " m3");
+    }
+
+    @Override
+    public double hitungBiayaAlat(int lamaSewa) {
+        double totalDasar = super.hitungBiayaAlat(lamaSewa);
+        if (lamaSewa >= 7) {
+            System.out.println("   [!] Diskon Excavator 10% diterapkan (Sewa >= 7 Hari)");
+            return totalDasar * 0.90; 
+        }
+        return totalDasar;
     }
 }
 
@@ -52,31 +63,45 @@ class Bulldozer extends AlatBerat {
         this.tipeBlade = tipeBlade;
     }
 
-    public String getTipeBlade() { return tipeBlade; }
-    public void setTipeBlade(String tipeBlade) { this.tipeBlade = tipeBlade; }
-
     @Override
     protected void cetakInfoAlat() {
         super.cetakInfoAlat();
         System.out.println("Spesifikasi  : Tipe Blade " + this.tipeBlade);
     }
+
+    @Override
+    public double hitungBiayaAlat(int lamaSewa) {
+        double totalDasar = super.hitungBiayaAlat(lamaSewa);
+        if (lamaSewa >= 5) {
+            System.out.println("   [!] Diskon Bulldozer 5% diterapkan (Sewa >= 5 Hari)");
+            return totalDasar * 0.95;
+        }
+        return totalDasar;
+    }
 }
 
 class Crane extends AlatBerat {
-    private double kapasitasAngkat;
+    private double kapasitasAngkat; 
 
     public Crane(String idAlat, String namaAlat, double hargaSewaPerHari, double kapasitasAngkat) {
         super(idAlat, namaAlat, hargaSewaPerHari);
         this.kapasitasAngkat = kapasitasAngkat;
     }
 
-    public double getKapasitasAngkat() { return kapasitasAngkat; }
-    public void setKapasitasAngkat(double kapasitasAngkat) { this.kapasitasAngkat = kapasitasAngkat; }
-
     @Override
     protected void cetakInfoAlat() {
         super.cetakInfoAlat();
         System.out.println("Spesifikasi  : Kapasitas Angkat " + this.kapasitasAngkat + " Ton");
+    }
+
+    @Override
+    public double hitungBiayaAlat(int lamaSewa) {
+        double totalDasar = super.hitungBiayaAlat(lamaSewa);
+        if (lamaSewa >= 3) {
+            System.out.println("   [!] Diskon Spesial Crane 15% diterapkan (Sewa >= 3 Hari)");
+            return totalDasar * 0.85;
+        }
+        return totalDasar;
     }
 }
 
@@ -90,24 +115,19 @@ class Operator {
         this.namaOperator = namaOperator;
         this.biayaPerHari = biayaPerHari;
     }
-
+    
     public String getIdOperator() { return idOperator; }
-    public void setIdOperator(String idOperator) { this.idOperator = idOperator; }
-
     public String getNamaOperator() { return namaOperator; }
-    public void setNamaOperator(String namaOperator) { this.namaOperator = namaOperator; }
-
     public double getBiayaPerHari() { return biayaPerHari; }
-    public void setBiayaPerHari(double biayaPerHari) { this.biayaPerHari = biayaPerHari; }
 
     protected void cetakInfoOperator() {
-        System.out.println("Operator     : " + this.namaOperator + " (Rp" + this.biayaPerHari + "/hari)");
+        System.out.println("Operator     : [" + this.idOperator + "] " + this.namaOperator + " (Rp" + this.biayaPerHari + "/hari)");
     }
 }
 
 class Penyewaan {
     private String idPenyewaan;
-    private AlatBerat alatBerat;
+    private AlatBerat alatBerat; 
     private Operator operator;
     private int lamaSewa;
 
@@ -119,27 +139,38 @@ class Penyewaan {
     }
 
     public String getIdPenyewaan() { return idPenyewaan; }
-    public void setIdPenyewaan(String idPenyewaan) { this.idPenyewaan = idPenyewaan; }
-
-    public AlatBerat getAlatBerat() { return alatBerat; }
     public void setAlatBerat(AlatBerat alatBerat) { this.alatBerat = alatBerat; }
-
-    public Operator getOperator() { return operator; }
     public void setOperator(Operator operator) { this.operator = operator; }
-
-    public int getLamaSewa() { return lamaSewa; }
     public void setLamaSewa(int lamaSewa) { this.lamaSewa = lamaSewa; }
 
     public double hitungTotalBiaya() {
-        return (alatBerat.getHargaSewaPerHari() + operator.getBiayaPerHari()) * lamaSewa;
+        return alatBerat.hitungBiayaAlat(lamaSewa) + (operator.getBiayaPerHari() * lamaSewa);
+    }
+
+    public double hitungTotalBiaya(double pajakPersentase) {
+        double subTotal = hitungTotalBiaya();
+        return subTotal + (subTotal * (pajakPersentase / 100.0));
     }
 
     protected void cetakStruk() {
+        cetakStruk(0);
+    }
+
+    protected void cetakStruk(double pajakPersentase) {
         System.out.println("ID Transaksi : " + this.idPenyewaan);
         this.alatBerat.cetakInfoAlat();
         this.operator.cetakInfoOperator();
         System.out.println("Lama Sewa    : " + this.lamaSewa + " Hari");
-        System.out.println("Total Biaya  : Rp" + hitungTotalBiaya());
+        
+        double subTotal = hitungTotalBiaya();
+        if (pajakPersentase > 0) {
+            double nominalPajak = subTotal * (pajakPersentase / 100.0);
+            System.out.println("Sub-Total    : Rp" + subTotal);
+            System.out.println("Pajak ("+pajakPersentase+"%) : Rp" + nominalPajak);
+            System.out.println("Total Bayar  : Rp" + hitungTotalBiaya(pajakPersentase));
+        } else {
+            System.out.println("Total Bayar  : Rp" + subTotal);
+        }
         System.out.println("---------------------------------");
     }
 }
@@ -153,7 +184,7 @@ public class SistemUtama {
     public static void main(String[] args) {
         listAlat.add(new Excavator("A01", "Excavator CAT 320", 1500000, 1.2));
         listAlat.add(new Bulldozer("A02", "Bulldozer Komatsu D85", 2000000, "Semi-U Blade"));
-        listAlat.add(new Crane("A03", "Mobile Crane Kato", 3500000, 25.0)); // Tambahan Crane
+        listAlat.add(new Crane("A03", "Mobile Crane Kato", 3500000, 25.0)); 
         
         listOperator.add(new Operator("O01", "Budi (Senior)", 500000));
         listOperator.add(new Operator("O02", "Andi (Junior)", 300000));
@@ -166,14 +197,19 @@ public class SistemUtama {
             System.out.println("==================================================================");
             System.out.println("1. Tampilkan Data Transaksi Penyewaan");
             System.out.println("2. Buat Transaksi Penyewaan Baru");
-            System.out.println("3. Ubah Lama Sewa Transaksi");
+            System.out.println("3. Ubah Lama Sewa/Data Transaksi");
             System.out.println("4. Hapus Transaksi Penyewaan");
             System.out.println("5. Keluar");
             System.out.println("==================================================================");
             System.out.print("Pilih menu (1-5): ");
             
-            int pilihan = scanner.nextInt();
-            scanner.nextLine();
+            int pilihan = 0;
+            try {
+                pilihan = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Input tidak valid! Harap masukkan angka (1-5).");
+                continue;
+            }
 
             switch (pilihan) {
                 case 1: readPenyewaan(); break;
@@ -194,8 +230,20 @@ public class SistemUtama {
         System.out.println("\n--- DATA TRANSAKSI PENYEWAAN ---");
         if (listPenyewaan.isEmpty()) {
             System.out.println("Belum ada data transaksi.");
-        } else {
-            for (Penyewaan p : listPenyewaan) {
+            return;
+        } 
+        
+        System.out.println("Opsi Tampilan:");
+        System.out.println("1. Struk Biasa");
+        System.out.println("2. Struk dengan PPN 11%");
+        System.out.print("Pilih (1/2): ");
+        String opsi = scanner.nextLine();
+
+        System.out.println("\n---------------------------------");
+        for (Penyewaan p : listPenyewaan) {
+            if (opsi.equals("2")) {
+                p.cetakStruk(11.0);
+            } else {
                 p.cetakStruk();
             }
         }
@@ -210,59 +258,151 @@ public class SistemUtama {
         for (int i = 0; i < listAlat.size(); i++) {
             System.out.println((i + 1) + ". " + listAlat.get(i).getNamaAlat());
         }
-        System.out.print("Masukkan nomor pilihan alat: ");
-        int indexAlat = scanner.nextInt() - 1;
+        
+        int indexAlat = -1;
+        while (true) {
+            System.out.print("Masukkan nomor pilihan alat: ");
+            try {
+                indexAlat = Integer.parseInt(scanner.nextLine()) - 1;
+                break; 
+            } catch (NumberFormatException e) {
+                System.out.println("Harap masukkan angka!");
+            }
+        }
 
         System.out.println("\nPilih Operator:");
         for (int i = 0; i < listOperator.size(); i++) {
-            System.out.println((i + 1) + ". " + listOperator.get(i).getNamaOperator());
+            System.out.println((i + 1) + ". [" + listOperator.get(i).getIdOperator() + "] " + listOperator.get(i).getNamaOperator());
         }
-        System.out.print("Masukkan nomor pilihan operator: ");
-        int indexOperator = scanner.nextInt() - 1;
 
-        System.out.print("\nMasukkan Lama Sewa (hari): ");
-        int lama = scanner.nextInt();
-        scanner.nextLine();
+        
+        int indexOperator = -1;
+        while (true) {
+            System.out.print("Masukkan nomor pilihan operator: ");
+            try {
+                indexOperator = Integer.parseInt(scanner.nextLine()) - 1;
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Harap masukkan angka!");
+            }
+        }
 
-        if (indexAlat >= 0 && indexAlat < listAlat.size() && indexOperator >= 0 && indexOperator < listOperator.size()) {
+        int lama = 0;
+        while (true) {
+            System.out.print("\nMasukkan Lama Sewa (hari): ");
+            try {
+                lama = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Harap masukkan angka untuk lama sewa!");
+            }
+        }
+
+        if (indexAlat >= 0 && indexAlat < listAlat.size() && indexOperator >= 0 && indexOperator < listOperator.size() && lama > 0) {
             Penyewaan sewaBaru = new Penyewaan(id, listAlat.get(indexAlat), listOperator.get(indexOperator), lama);
             listPenyewaan.add(sewaBaru);
             System.out.println("Transaksi berhasil ditambahkan!");
         } else {
-            System.out.println("Gagal menambahkan. Pilihan alat/operator tidak valid.");
+            System.out.println("Gagal menambahkan. Pilihan alat/operator di luar daftar atau hari tidak valid.");
         }
     }
 
     private static void updatePenyewaan() {
         System.out.println("\n--- UPDATE DATA TRANSAKSI ---");
-        readPenyewaan();
-        if (listPenyewaan.isEmpty()) return;
+        if (listPenyewaan.isEmpty()) {
+            System.out.println("Belum ada data transaksi.");
+            return;
+        }
 
-        System.out.print("Masukkan ID Transaksi yang ingin diubah lama sewanya: ");
+        System.out.print("Masukkan ID Transaksi yang ingin diubah: ");
         String id = scanner.nextLine();
 
         boolean ditemukan = false;
         for (Penyewaan p : listPenyewaan) {
             if (p.getIdPenyewaan().equalsIgnoreCase(id)) {
-                System.out.print("Masukkan lama sewa baru (hari): ");
-                int lamaBaru = scanner.nextInt();
-                scanner.nextLine();
-                p.setLamaSewa(lamaBaru);
                 ditemukan = true;
-                System.out.println("Data berhasil diperbarui! Total biaya akan dikalkulasi ulang.");
-                break;
+                boolean isUpdating = true;
+                
+                while(isUpdating) {
+                    System.out.println("\n--- Data Transaksi Saat Ini ---");
+                    p.cetakStruk();
+                    
+                    System.out.println("Pilih data yang ingin diubah:");
+                    System.out.println("1. Alat Berat");
+                    System.out.println("2. Operator");
+                    System.out.println("3. Lama Sewa");
+                    System.out.println("4. Selesai / Simpan Perubahan");
+                    System.out.print("Pilih opsi (1-4): ");
+                    
+                    int opsi = 0;
+                    try {
+                        opsi = Integer.parseInt(scanner.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Harap masukkan angka!");
+                        continue;
+                    }
+
+                    switch(opsi) {
+                        case 1:
+                            System.out.println("\nPilih Alat Berat Baru:");
+                            for (int i = 0; i < listAlat.size(); i++) {
+                                System.out.println((i + 1) + ". " + listAlat.get(i).getNamaAlat());
+                            }
+                            System.out.print("Masukkan nomor pilihan alat: ");
+                            int indexAlat = Integer.parseInt(scanner.nextLine()) - 1;
+                            
+                            if (indexAlat >= 0 && indexAlat < listAlat.size()) {
+                                p.setAlatBerat(listAlat.get(indexAlat));
+                                System.out.println("Alat Berat diperbarui!");
+                            } else { System.out.println("Pilihan alat tidak valid."); }
+                            break;
+
+                        case 2:
+                            System.out.println("\nPilih Operator Baru:");
+                            for (int i = 0; i < listOperator.size(); i++) {
+                                System.out.println((i + 1) + ". [" + listOperator.get(i).getIdOperator() + "] " + listOperator.get(i).getNamaOperator());
+                            }
+                            
+                            System.out.print("Masukkan nomor pilihan operator: ");
+                            int indexOperator = Integer.parseInt(scanner.nextLine()) - 1;
+                            
+                            if (indexOperator >= 0 && indexOperator < listOperator.size()) {
+                                p.setOperator(listOperator.get(indexOperator));
+                                System.out.println("Operator diperbarui!");
+                            } else { System.out.println("Pilihan operator tidak valid."); }
+                            break;
+
+                        case 3:
+                            System.out.print("\nMasukkan lama sewa baru (hari): ");
+                            int lamaBaru = Integer.parseInt(scanner.nextLine());
+                            if (lamaBaru > 0) {
+                                p.setLamaSewa(lamaBaru);
+                                System.out.println("Lama Sewa diperbarui!");
+                            } else { System.out.println("Lama sewa tidak valid."); }
+                            break;
+
+                        case 4:
+                            isUpdating = false; 
+                            System.out.println("Selesai memperbarui.");
+                            break;
+
+                        default:
+                            System.out.println("Pilihan tidak valid.");
+                    }
+                }
+                break; 
             }
         }
 
-        if (!ditemukan) {
-            System.out.println("Transaksi dengan ID " + id + " tidak ditemukan.");
-        }
+        if (!ditemukan) { System.out.println("Transaksi dengan ID '" + id + "' tidak ditemukan."); }
     }
 
     private static void deletePenyewaan() {
         System.out.println("\n--- HAPUS DATA TRANSAKSI ---");
-        readPenyewaan();
-        if (listPenyewaan.isEmpty()) return;
+        if (listPenyewaan.isEmpty()) {
+            System.out.println("Belum ada data transaksi.");
+            return;
+        }
 
         System.out.print("Masukkan ID Transaksi yang ingin dihapus: ");
         String id = scanner.nextLine();
@@ -272,7 +412,7 @@ public class SistemUtama {
         if (dihapus) {
             System.out.println("Transaksi berhasil dihapus.");
         } else {
-            System.out.println("Transaksi dengan ID " + id + " tidak ditemukan.");
+            System.out.println("Transaksi dengan ID '" + id + "' tidak ditemukan.");
         }
     }
 }
