@@ -17,7 +17,8 @@ Sebuah program sederhana berbasis teks (CLI) yang dibuat dengan Java. Program in
 - **`POSTTEST_1` (Dasar OOP & CRUD):** Implementasi class dasar dan `ArrayList`.
 - **`POSTTEST_2` (Enkapsulasi):** Penerapan *setter/getter* dan *access modifiers*.
 - **`POSTTEST_3` (Inheritance & Error Handling):** Memecah alat menjadi 3 Subclass (`Excavator`, `Bulldozer`, `Crane`) & penerapan `Try-Catch`.
-- **`POSTTEST_4` (Polymorphism):** - **Method Overriding:** Terdapat 2 *method* yang di-override di masing-masing subclass, yaitu `cetakInfoAlat()` (untuk spesifikasi khusus) dan `hitungBiayaAlat()` (untuk sistem diskon otomatis berdasarkan durasi sewa yang spesifik untuk setiap jenis alat berat).
+- **`POSTTEST_4` (Polymorphism):** 
+  - **Method Overriding:** Terdapat 2 *method* yang di-override di masing-masing subclass, yaitu `cetakInfoAlat()` (untuk spesifikasi khusus) dan `hitungBiayaAlat()` (untuk sistem diskon otomatis berdasarkan durasi sewa yang spesifik untuk setiap jenis alat berat).
   - **Method Overloading:** Terdapat 2 *method* yang di-overload pada class `Penyewaan`. Yaitu `hitungTotalBiaya()` (bisa hitung normal, atau tambah argumen *pajak*) dan `cetakStruk()` (bisa cetak biasa, atau tambah argumen *pajak* PPN 11%). Semuanya diakses secara dinamis saat menu Tampil dipanggil.
 
 ---
